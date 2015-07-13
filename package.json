@@ -1,20 +1,20 @@
 {
-   "name": "px-to-em",
-   "main": "./lib/px-to-em",
-   "version": "0.1.0",
-   "description": "convert a 'px' value to 'em'",
-   "keywords": [
-      "convert",
-      "px to em",
-      "convert px to em"
-   ],
-   "activationCommands": {
-      "atom-workspace": "px-to-em:toggle"
-   },
-   "repository": "https://github.com/oscarsolas/atom-px-to-ems",
-   "license": "MIT",
-   "engines": {
-      "atom": ">=1.0.0 <2.0.0"
-   },
-   "dependencies": {}
+  "name": "px-to-em",
+  "main": "./lib/px-to-em",
+  "version": "0.2.0",
+  "description": "convert a 'px' value to 'em'",
+  "keywords": [
+    "convert",
+    "px to em",
+    "convert px to em"
+  ],
+  "activationCommands": {
+    "atom-workspace": "px-to-em:toggle"
+  },
+  "repository": "https://github.com/oscarsolas/atom-px-to-ems",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {}
 }
