@@ -31,5 +31,6 @@ module.exports = PxToEm =
          else
             text = text.replace('/'+base, '') + ('/* ' + parseInt(val) + '\u00A0*/')
             text = text.replace(/[\u00A0]\*\//g, '/' + base.replace(/(\r\n|\n|\r)/gi, "") + '\u00A0*/')
+            text = text + '\n'
 
       original.insertText(text)
