@@ -1,0 +1,22 @@
+# See https://atom.io/docs/latest/hacking-atom-package-word-count#menus for more details
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Toggle px-to-em'
+      'command': 'px-to-em:toggle'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'px-to-em'
+      'submenu': [
+        {
+          'label': 'Toggle'
+          'command': 'px-to-em:toggle'
+        }
+      ]
+    ]
+  }
+]
