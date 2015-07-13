@@ -1,20 +1,49 @@
 {
   "name": "px-to-em",
   "main": "./lib/px-to-em",
-  "version": "0.3.0",
-  "description": "convert a 'px' value to 'em'",
+  "version": "1.0.0",
+  "description": "convert a 'px' value to 'em' or 'rem'",
   "keywords": [
     "convert",
     "px to em",
-    "convert px to em"
+    "px to rem",
+    "convert px to em",
+    "convert px to rem"
   ],
   "activationCommands": {
     "atom-workspace": "px-to-em:toggle"
   },
-  "repository": "https://github.com/oscarsolas/atom-px-to-ems",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/oscarsolas/atom-px-to-ems"
+  },
   "license": "MIT",
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {}
+  "dependencies": {},
+  "readme": "# px-to-em package\n\nUSAGE\n-----\n\n1 - Add the base value to the end of line. Example:\n\n\t margin: 18px; /16\n\n\n2 - Type Ctrl+cmd+E and the result is:\n\n\t margin: 1.125em;  /* 18/16 */\n",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/oscarsolas/atom-px-to-ems/issues"
+  },
+  "homepage": "https://github.com/oscarsolas/atom-px-to-ems",
+  "_id": "px-to-em@0.4.0",
+  "_shasum": "4940546aaf21a7919fabe8783e7b1b5f7dcd18b9",
+  "_resolved": "file:../d-115613-794-18hgagc/package.tgz",
+  "_from": "../d-115613-794-18hgagc/package.tgz",
+  "_atomModuleCache": {
+    "version": 1,
+    "dependencies": [],
+    "extensions": {
+      ".coffee": [
+        "lib/px-to-em-view.coffee",
+        "lib/px-to-em.coffee"
+      ],
+      ".json": [
+        "package.json"
+      ]
+    },
+    "folders": []
+  }
 }
