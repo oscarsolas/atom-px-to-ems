@@ -27,10 +27,9 @@ module.exports = PxToEm =
       values.forEach (val, key) ->
          text = text.replace(val, parseInt(val)/base + 'em')
          if key < values.length-1
-            text = text + (' /* ' + parseInt(val) + ' */')
+            text = text.concat('/* ' + parseInt(val) + '\u00A0*/ ')
          else
-            console.log('asdad');
-            text = text.replace('/'+base, '') + (' /* ' + parseInt(val) + ' */')
-            text = text.replace(/\ \*\//g, '/' + base + ' */')
+            text = text.replace('/'+base, '') + ('/* ' + parseInt(val) + '\u00A0*/')
+            text = text.replace(/[\u00A0]\*\//g, '/' + base.replace(/(\r\n|\n|\r)/gi, "") + '\u00A0*/')
 
       original.insertText(text)
