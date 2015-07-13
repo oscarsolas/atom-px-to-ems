@@ -11,7 +11,7 @@
    "activationCommands": {
       "atom-workspace": "px-to-em:toggle"
    },
-   "repository": "https://github.com/atom/px-to-em",
+   "repository": "https://github.com/oscarsolas/atom-px-to-ems",
    "license": "MIT",
    "engines": {
       "atom": ">=1.0.0 <2.0.0"
