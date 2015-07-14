@@ -51,7 +51,7 @@ module.exports = PxToEm =
                text = text.concat('/* ' + parseInt(val) + ' */ ').replace(/(\r\n|\n|\r)/gi, '')
             else
                fullBase = '/'+base.replace(/(\r\n|\n|\r)/gi, '')
-               text = text.replace(fullBase, ' ') + ('/* ' + parseInt(val) + ' */')
+               text = text.replace(fullBase, ' ').replace(/(\r\n|\n|\r)/gi, '') + ('/* ' + parseInt(val) + ' */')
                text = text.replace(/\ \*\//g, '/' + base.replace(/(\r\n|\n|\r)/gi, '') + ' */')
                text = text + '\n'
 
