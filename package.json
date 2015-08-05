@@ -1,7 +1,7 @@
 {
   "name": "px-to-em",
   "main": "./lib/px-to-em",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "convert a 'px' value to 'em' or 'rem'",
   "keywords": [
     "convert",
@@ -28,10 +28,10 @@
     "url": "https://github.com/oscarsolas/atom-px-to-ems/issues"
   },
   "homepage": "https://github.com/oscarsolas/atom-px-to-ems",
-  "_id": "px-to-em@0.4.0",
+  "_id": "px-to-em@2.1.0",
   "_shasum": "4940546aaf21a7919fabe8783e7b1b5f7dcd18b9",
-  "_resolved": "file:../d-115613-794-18hgagc/package.tgz",
-  "_from": "../d-115613-794-18hgagc/package.tgz",
+  "_resolved": "file:../d-115614-7629-cutb8n/package.tgz",
+  "_from": "../d-115614-7629-cutb8n/package.tgz",
   "_atomModuleCache": {
     "version": 1,
     "dependencies": [],

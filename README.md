@@ -13,7 +13,7 @@ USAGE
 
 First method:
 
-1 - Type Ctrl+cmd+E on the line to be converted.
+1 - Type cmd+shift+E on the line to be converted.
 
 
 Second method:
@@ -23,7 +23,7 @@ Second method:
 	 margin: 18px; /12
 
 
-2 - Type Ctrl+cmd+E and the result is:
+2 - Type cmd+shift+E and the result is:
 
 	 margin: 1.5em;  /* 18/12 */
 
