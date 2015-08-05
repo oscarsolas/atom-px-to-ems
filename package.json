@@ -1,7 +1,7 @@
 {
   "name": "px-to-em",
   "main": "./lib/px-to-em",
-  "version": "2.3.0",
+  "version": "2.4.0",
   "description": "convert a 'px' value to 'em' or 'rem'",
   "keywords": [
     "convert",
