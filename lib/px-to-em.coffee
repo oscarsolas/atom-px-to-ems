@@ -3,18 +3,6 @@ PxToEmView = require './px-to-em-view'
 
 module.exports = PxToEm =
    config:
-      Comments:
-         type: 'boolean'
-         title: 'Add informative comments'
-         description: 'Adds comments at the end of line with information about original size and base applied'
-         default: true
-
-      Fallback:
-         type: 'boolean'
-         title: 'Allow fallback'
-         description: 'Maintains the original line and adds the conversion to the bottom line'
-         default: false
-
       Unit:
          type: 'string'
          description: 'Choose a type of output unit.'
@@ -22,12 +10,29 @@ module.exports = PxToEm =
          enum: [
             'em'
             'rem'
-         ]
+         ],
+         order: 1
 
       Base:
          type: 'string'
          description: 'Choose a default base.'
-         default: '16'
+         default: '16',
+         order: 2
+
+      Comments:
+         type: 'boolean'
+         title: 'Add informative comments'
+         description: 'Adds comments at the end of line with information about original size and base applied'
+         default: true,
+         order: 3
+
+      Fallback:
+         type: 'boolean'
+         title: 'Allow fallback'
+         description: 'Maintains the original line and adds the conversion to the bottom line'
+         default: false,
+         order: 4
+
 
    pxToEmView: null
    modalPanel: null
