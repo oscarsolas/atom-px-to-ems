@@ -10,7 +10,11 @@ module.exports = PxToEm =
         enum: [
           'em'
           'rem'
-        ]
+        ],
+      Base:
+        type: 'string'
+        description: 'Choose a default base.'
+        default: '16'
 
    pxToEmView: null
    modalPanel: null
@@ -43,6 +47,8 @@ module.exports = PxToEm =
          #if not specify a base value is generated default
          if base == ''
             base = '16'
+            atom.config.observe 'px-to-em.Base', (newBase) ->
+              base = newBase
             text = text + ' '
          #each the px values
          values.forEach (val, key) ->
