@@ -3,6 +3,7 @@ PxToEmView = require './px-to-em-view'
 
 module.exports = PxToEm =
    config:
+<<<<<<< HEAD
      Comments:
        title: 'Enable Comments?'
        description: 'e.g. margin: 1.25em 0.75em 0.3125em 0.875em; /&#42; 20/16 &#42;/ /&#42; 12/16 &#42;/ /&#42; 5/16 &#42;/ /&#42; 14/16 &#42;/'
@@ -21,6 +22,20 @@ module.exports = PxToEm =
          'em'
          'rem'
        ]
+=======
+      Unit:
+        type: 'string'
+        description: 'Choose a type of output unit.'
+        default: 'em'
+        enum: [
+          'em'
+          'rem'
+        ],
+      Base:
+        type: 'string'
+        description: 'Choose a default base.'
+        default: '16'
+>>>>>>> master
 
    pxToEmView: null
    modalPanel: null
@@ -58,6 +73,8 @@ module.exports = PxToEm =
          #if not specify a base value is generated default
          if base == ''
             base = '16'
+            atom.config.observe 'px-to-em.Base', (newBase) ->
+              base = newBase
             text = text + ' '
          #each the px values
          values.forEach (val, key) ->
