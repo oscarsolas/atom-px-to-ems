@@ -33,7 +33,6 @@ module.exports = PxToEm =
          default: false,
          order: 4
 
-
    pxToEmView: null
    modalPanel: null
    subscriptions: null
@@ -85,6 +84,6 @@ module.exports = PxToEm =
                   text = text + '\r\n'
 
          if fallback == true
-            text = fallbackValue + '/n' + text
+            text = fallbackValue.replace(/(\r\n|\n|\r)/gi, '') + '\n' + text
 
       original.insertText(text)
