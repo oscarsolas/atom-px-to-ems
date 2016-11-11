@@ -28,7 +28,7 @@
     "folders": []
   },
   "_from": "../d-1161010-10010-17dsj83/package.tgz",
-  "_id": "px-to-em@2.5.1",
+  "_id": "px-to-em@2.5.3",
   "_inCache": true,
   "_installable": true,
   "_location": "/px-to-em",
@@ -80,5 +80,5 @@
     "type": "git",
     "url": "git+https://github.com/oscarsolas/atom-px-to-ems.git"
   },
-  "version": "2.5.3"
+  "version": "2.5.2"
 }
