@@ -70,7 +70,8 @@ module.exports = PxToEm =
             base = '16'
             atom.config.observe 'px-to-em.Base', (newBase) ->
                base = newBase
-            text = text + ' '
+            if comments == true
+              text = text + ' '
          #each the px values
          values.forEach (val, key) ->
             text = text.replace(val, parseInt(val)/base + unit)
