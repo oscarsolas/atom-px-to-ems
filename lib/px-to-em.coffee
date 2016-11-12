@@ -41,28 +41,54 @@ module.exports = PxToEm =
       atom.commands.add 'atom-workspace', 'px-to-em:toggle': => @convert()
 
    convert: ->
+      #store this
+      plugin = this
+      #set editor
+      editor = atom.workspace.getActivePaneItem()
+      # set container for cursors
+      cursorLines = []
+
+      #get cursors position
+      editor.cursors.forEach (cursor, key) ->
+         cursorLines.push(cursor.getScreenRow());
+
+      cursorLines.forEach (line, key) ->
+         editor.selections.forEach (selection, key) ->
+            # if selection is multi line
+            if selection.isSingleScreenLine() == false
+               firstLine = selection.getScreenRange().start.row
+               lastLine = selection.getScreenRange().end.row
+               line = firstLine;
+               while line <= lastLine
+                  plugin.replaceText(selection, line)
+                  line++
+            # if selection is single line
+            else
+               plugin.replaceText(selection, line)
+
+   replaceText: (selection, line) ->
       #set Comments value from settings.
       comments = atom.config.get('px-to-em.Comments')
       #set Fallback value from settings.
       fallback = atom.config.get('px-to-em.Fallback')
       #set Unit value from settings.
       unit = atom.config.get('px-to-em.Unit')
-
-      editor = atom.workspace.getActivePaneItem()
-      #select current line
-      selection = editor.selectLinesContainingCursors()
-      #get line value
-      original = editor.getLastSelection()
+      #select lines to convert
+      selection.selectLine(line)
       #save line value
-      text = original.getText().replace(' /', '/')
+      if comments == true
+         text = selection.getText().replace(' /', '/');
+      else
+         text = selection.getText().replace(/\s\/+([0-9]*)/gi, '');
       #save origin for fallback
-      fallbackValue = text
+      fallbackValue = text.replace('/', ' /');
       #get init of the base
       initBase = text.search('/')
       #save the base value
       base = text.slice(initBase).slice(1)
       #get init of the px value
       values = text.match(/([0-9]+)px/gi)
+
       #if values exist
       if values != null
          #if not specify a base value is generated default
@@ -70,21 +96,20 @@ module.exports = PxToEm =
             base = '16'
             atom.config.observe 'px-to-em.Base', (newBase) ->
                base = newBase
-            if comments == true
-              text = text + ' '
          #each the px values
          values.forEach (val, key) ->
             text = text.replace(val, parseInt(val)/base + unit)
             if comments == true
+               text = text + ' ';
                if key < values.length-1
                   text = text.concat('/* ' + parseInt(val) + ' */ ').replace(/(\r\n|\n|\r)/gi, '')
                else
                   fullBase = '/'+base.replace(/(\r\n|\n|\r)/gi, '')
-                  text = text.replace(fullBase, ' ').replace(/(\r\n|\n|\r)/gi, '') + ('/* ' + parseInt(val) + ' */')
+                  text = text.replace(fullBase, '').replace(/(\r\n|\n|\r)/gi, '') + ('/* ' + parseInt(val) + ' */')
                   text = text.replace(/\ \*\//g, '/' + base.replace(/(\r\n|\n|\r)/gi, '') + ' */')
                   text = text + '\r\n'
 
          if fallback == true
             text = fallbackValue.replace(/(\r\n|\n|\r)/gi, '') + '\n' + text
 
-      original.insertText(text)
+      selection.insertText(text)

@@ -1,5 +1,5 @@
-## 2.5.3
-* Minor fixes.
+## 2.6.0
+* Added multiline convertions.
 
 ## 2.5.0
 * Added options to disable comments and also leave fallback px.
