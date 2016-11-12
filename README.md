@@ -29,4 +29,14 @@ Second method:
 
 
 
-*You can choose the type of units you want to convert in the package configuration
+*Both methods accept multiline conversion
+
+
+
+AVAILABLE OPTIONS
+-----------------
+
+- Unit selection: you can select em or rem
+- Default Base: you can define a custom base (default is 16px)
+- Comments: you can enable or disable the comment at end of converted line
+- Fallback: you have the posibility of maintain the original line and adds the conversion to the bottom line.
