@@ -64,11 +64,14 @@
   },
   "homepage": "https://github.com/oscarsolas/atom-px-to-ems",
   "keywords": [
-    "convert",
+    "convert units",
+    "convert css unit",
     "px to em",
     "px to rem",
     "convert px to em",
-    "convert px to rem"
+    "convert px to rem",
+    "rem",
+    "unit"
   ],
   "license": "MIT",
   "main": "./lib/px-to-em",
