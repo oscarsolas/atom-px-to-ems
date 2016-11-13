@@ -41,6 +41,8 @@ module.exports = PxToEm =
       atom.commands.add 'atom-workspace', 'px-to-em:toggle': => @convert()
 
    convert: ->
+      #set Fallback value from settings.
+      fallback = atom.config.get('px-to-em.Fallback')
       #store this
       plugin = this
       #set editor
@@ -51,7 +53,9 @@ module.exports = PxToEm =
       #get cursors position
       editor.cursors.forEach (cursor, key) ->
          cursorLines.push(cursor.getScreenRow());
-
+      #sort cursors position
+      cursorLines.sort((a, b) -> b - a)
+      #each cursors
       cursorLines.forEach (line, key) ->
          editor.selections.forEach (selection, key) ->
             # if selection is multi line
@@ -61,10 +65,15 @@ module.exports = PxToEm =
                line = firstLine;
                while line <= lastLine
                   plugin.replaceText(selection, line)
+                  if fallback == true
+                     line = line + 1
+                     lastLine = lastLine + 1
                   line++
             # if selection is single line
             else
                plugin.replaceText(selection, line)
+               if fallback == true
+                  line = line + 1
 
    replaceText: (selection, line) ->
       #set Comments value from settings.
@@ -76,12 +85,9 @@ module.exports = PxToEm =
       #select lines to convert
       selection.selectLine(line)
       #save line value
-      if comments == true
-         text = selection.getText().replace(' /', '/');
-      else
-         text = selection.getText().replace(/\s\/+([0-9]*)/gi, '');
+      text = selection.getText()
       #save origin for fallback
-      fallbackValue = text.replace('/', ' /');
+      fallbackValue = text
       #get init of the base
       initBase = text.search('/')
       #save the base value
@@ -100,16 +106,23 @@ module.exports = PxToEm =
          values.forEach (val, key) ->
             text = text.replace(val, parseInt(val)/base + unit)
             if comments == true
-               text = text + ' ';
                if key < values.length-1
                   text = text.concat('/* ' + parseInt(val) + ' */ ').replace(/(\r\n|\n|\r)/gi, '')
                else
                   fullBase = '/'+base.replace(/(\r\n|\n|\r)/gi, '')
+                  text = text.replace(/;\s/g, ';').replace(/;/g, '; ')
                   text = text.replace(fullBase, '').replace(/(\r\n|\n|\r)/gi, '') + ('/* ' + parseInt(val) + ' */')
                   text = text.replace(/\ \*\//g, '/' + base.replace(/(\r\n|\n|\r)/gi, '') + ' */')
                   text = text + '\r\n'
+            else
+               fullBase = '/'+base.replace(/(\r\n|\n|\r)/gi, '')
+               text = text.replace(/;\s/g, ';')
+               text = text.replace(fullBase, '').replace(/(\r\n|\n|\r)/gi, '')
+               text = text + '\r\n'
 
          if fallback == true
+            fullBase = '/'+base.replace(/(\r\n|\n|\r)/gi, '')
+            fallbackValue = fallbackValue.replace(/;\s/g, ';').replace(fullBase, '')
             text = fallbackValue.replace(/(\r\n|\n|\r)/gi, '') + '\n' + text
 
       selection.insertText(text)

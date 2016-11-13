@@ -1,5 +1,9 @@
+## 2.6.1
+* Fallback option and multiline conversions is now compatible.
+* Minor bug fixes
+
 ## 2.6.0
-* Added multiline convertions.
+* Added multiline conversions.
 
 ## 2.5.0
 * Added options to disable comments and also leave fallback px.
