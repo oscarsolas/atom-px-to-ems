@@ -76,6 +76,8 @@ module.exports = PxToEm =
                   line = line + 1
 
    replaceText: (selection, line) ->
+      #set editor
+      editor = atom.workspace.getActivePaneItem()
       #set Comments value from settings.
       comments = atom.config.get('px-to-em.Comments')
       #set Fallback value from settings.
@@ -83,7 +85,9 @@ module.exports = PxToEm =
       #set Unit value from settings.
       unit = atom.config.get('px-to-em.Unit')
       #select lines to convert
-      selection.selectLine(line)
+      editor.cursors.forEach (cursor, key) ->
+         cursor.setScreenPosition([line, 0])
+      selection.selectToEndOfLine()
       #save line value
       text = selection.getText()
       #save origin for fallback
@@ -113,12 +117,10 @@ module.exports = PxToEm =
                   text = text.replace(/;\s/g, ';').replace(/;/g, '; ')
                   text = text.replace(fullBase, '').replace(/(\r\n|\n|\r)/gi, '') + ('/* ' + parseInt(val) + ' */')
                   text = text.replace(/\ \*\//g, '/' + base.replace(/(\r\n|\n|\r)/gi, '') + ' */')
-                  text = text + '\r\n'
             else
                fullBase = '/'+base.replace(/(\r\n|\n|\r)/gi, '')
                text = text.replace(/;\s/g, ';')
                text = text.replace(fullBase, '').replace(/(\r\n|\n|\r)/gi, '')
-               text = text + '\r\n'
 
          if fallback == true
             fullBase = '/'+base.replace(/(\r\n|\n|\r)/gi, '')
