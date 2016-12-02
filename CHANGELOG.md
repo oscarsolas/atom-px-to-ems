@@ -1,3 +1,6 @@
+## 2.6.2
+* Fixed bug with lines breaks
+
 ## 2.6.1
 * Fallback option and multiline conversions is now compatible.
 * Minor bug fixes
